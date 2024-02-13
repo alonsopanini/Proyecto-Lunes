@@ -1,0 +1,39 @@
+<template>
+
+        <div class="slds-modal__container">
+
+            <div class="slds-modal__header">
+                    <h1>{title}</h1>
+            </div>
+
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <slot name="content">
+                
+                
+                <div class="slds-grid slds-gutters slds-wrap" >
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input label="First Name" name="FirstName" value={record.FirstName} onchange={handleFieldChange}></lightning-input>
+                            <lightning-input label="Last Name" name="LastName" value={record.LastName} onchange={handleFieldChange}></lightning-input>
+                            <lightning-input label="Email" name="Email" value={record.Email} onchange={handleFieldChange}></lightning-input>
+                            <lightning-input label="Phone" name="Phone" value={record.Phone} onchange={handleFieldChange}></lightning-input>
+                        </div>
+                </div>
+            </slot>
+        </div>
+        <div class="slds-modal__footer slds-grid ">
+            <slot name="actions">
+                <div class="slds-gutters_medium">
+                    <template if:false={isCreateContact}>
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                        <lightning-button label="Save" onclick={handleSave} variant="brand"></lightning-button>
+                    </template>
+                    <template if:true={isCreateContact}>
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                        <lightning-button label="Create" onclick={handleCreate} variant="brand"></lightning-button>
+                    </template>
+                </div>
+            </slot>
+        </div>
+    </div>
+    
+</template>

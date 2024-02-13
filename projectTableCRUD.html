@@ -1,0 +1,41 @@
+<template>
+    <!-- A card containing the title and also the button to insert new contacts -->
+
+    <lightning-card title="Contacts" icon-name="standard:contact">
+        <div class="slds-m-around_medium">
+            <lightning-button label="New Contact" variant="brand" onclick={handleOpenModalNewContact}></lightning-button>
+        </div>
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                key-field="id"
+                data={lstContacts}
+                columns={columns}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </div>
+
+        <!-- Modal --> 
+        <template if:true={displayModal}>
+            <c-project-Modal
+            >
+
+              <div slot="content">
+                <c-project-form 
+                record={recordData} 
+                onsave={handleUpdate} 
+                oncancel={handleCancel} 
+                title={title}
+                row-fields ={rowFields}
+                columns={columns}
+                oninsert={handleCreate}
+                is-create-contact={isCreateContact}
+                >
+            
+            
+            </c-project-form>
+            </div>  
+            </c-project-Modal>
+    
+        </template>
+    </lightning-card>
+</template>  
